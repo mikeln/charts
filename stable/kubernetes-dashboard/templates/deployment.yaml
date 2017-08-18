@@ -8,6 +8,7 @@ metadata:
     release: "{{ .Release.Name }}"
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     kubernetes.io/cluster-service: "true"
+  namespace: {{ .Release.Namespace }}
 spec:
   replicas: 1
   strategy:
@@ -46,3 +47,4 @@ spec:
         - name: http
           containerPort: 9090
           protocol: TCP
+      serviceAccountName: {{ template "fullname" . }}
